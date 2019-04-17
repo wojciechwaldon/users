@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.wojciechwaldon</groupId>
+    <artifactId>users</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>users-api</module>
+        <module>users-domain</module>
+        <module>users-infrastructure</module>
+        <module>users-standalone-app</module>
+    </modules>
+
+    <name>Users</name>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.wojciechwaldon</groupId>
+                <artifactId>dependency-versions</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.wojciechwaldon.users</groupId>
+                <artifactId>users-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wojciechwaldon.users</groupId>
+                <artifactId>users-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wojciechwaldon.users.users-domain</groupId>
+                <artifactId>users-domain-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wojciechwaldon.users.users-domain</groupId>
+                <artifactId>users-domain-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wojciechwaldon.users</groupId>
+                <artifactId>users-infrastructure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.4</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>
