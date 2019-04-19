@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 abstract public class User implements Serializable {
 
@@ -17,6 +17,7 @@ abstract public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @OneToOne
     private Token token;
 
     @NotNull
@@ -30,4 +31,11 @@ abstract public class User implements Serializable {
 
     @NotNull
     protected String telephone;
+
+    protected User(String firstName, String lastName, String email, String telephone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.telephone = telephone;
+    }
 }
