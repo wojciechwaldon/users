@@ -29,11 +29,6 @@
             <groupId>com.wojciechwaldon.users.users-domain</groupId>
             <artifactId>users-domain-api</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.wojciechwaldon</groupId>
-            <artifactId>commons</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>

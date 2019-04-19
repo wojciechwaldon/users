@@ -2,6 +2,7 @@ package com.wojciechwaldon.users.infrastructure.delivery.authorizeduser;
 
 
 import com.wojciechwaldon.commons.JsonConverter;
+import com.wojciechwaldon.cqrs.infrastructure.CqrsConfiguration;
 import com.wojciechwaldon.users.domain.api.authorizeduser.AuthorizedUser;
 import com.wojciechwaldon.users.infrastructure.UsersModuleConfiguration;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @AutoConfigureMockMvc
 @EnableWebMvc
-@SpringBootTest(classes = UsersModuleConfiguration.class)
+@SpringBootTest(classes = {UsersModuleConfiguration.class, CqrsConfiguration.class})
 @RequiredArgsConstructor
 public class AuthorizedUserHttpEndpointsIT {
 
