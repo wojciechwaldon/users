@@ -2,6 +2,7 @@ package com.wojciechwaldon.users.domain.api.authorizeduser;
 
 import com.wojciechwaldon.users.domain.api.Token;
 import com.wojciechwaldon.users.domain.api.User;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "AUTHORIZED_USER", schema = "USERS")
 @Getter
+@EqualsAndHashCode(callSuper = false)
 public class AuthorizedUser extends User {
 
     private AuthorizedUser() {
@@ -30,5 +32,9 @@ public class AuthorizedUser extends User {
 
     public static AuthorizedUser of(Long id, Token token, String firstName, String lastName, String email, String telephone) {
         return new AuthorizedUser(id, token, firstName, lastName, email, telephone);
+    }
+
+    public void withToken(Token token) {
+        super.token = token;
     }
 }

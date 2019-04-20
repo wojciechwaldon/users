@@ -20,9 +20,9 @@ abstract public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS.USERS_SEQUENCE")
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "TOKEN_ID")
-    private Token token;
+    protected Token token;
 
     @NotNull
     @Column(name = "FIRST_NAME")
