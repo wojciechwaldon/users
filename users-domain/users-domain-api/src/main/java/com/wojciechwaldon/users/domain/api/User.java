@@ -1,6 +1,9 @@
 package com.wojciechwaldon.users.domain.api;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,16 +17,19 @@ import java.io.Serializable;
 abstract public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS.USERS_SEQUENCE")
     private Long id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TOKEN_ID")
     private Token token;
 
     @NotNull
+    @Column(name = "FIRST_NAME")
     protected String firstName;
 
     @NotNull
+    @Column(name = "LAST_NAME")
     protected String lastName;
 
     @NotNull

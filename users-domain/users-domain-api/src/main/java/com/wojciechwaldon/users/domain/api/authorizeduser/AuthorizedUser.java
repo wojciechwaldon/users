@@ -5,8 +5,10 @@ import com.wojciechwaldon.users.domain.api.User;
 import lombok.Getter;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "AUTHORIZED_USER", schema = "USERS")
 @Getter
 public class AuthorizedUser extends User {
 

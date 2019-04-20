@@ -1,5 +1,6 @@
 package com.wojciechwaldon.users.app;
 
+import com.wojciechwaldon.cqrs.infrastructure.CqrsConfiguration;
 import com.wojciechwaldon.users.infrastructure.UsersModuleConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 @Import({
+        CqrsConfiguration.class,
         UsersModuleConfiguration.class
 })
 public class StandaloneApp {
