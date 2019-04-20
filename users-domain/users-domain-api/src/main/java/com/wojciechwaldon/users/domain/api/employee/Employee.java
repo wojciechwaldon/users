@@ -2,6 +2,7 @@ package com.wojciechwaldon.users.domain.api.employee;
 
 import com.wojciechwaldon.users.domain.api.Token;
 import com.wojciechwaldon.users.domain.api.User;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "EMPLOYEE", schema = "USERS")
 @Getter
+@EqualsAndHashCode(callSuper = false)
 public class Employee extends User {
 
     @NonNull

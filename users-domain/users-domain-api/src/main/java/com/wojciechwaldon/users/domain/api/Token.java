@@ -7,16 +7,18 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "TOKEN", schema = "USERS")
 @AllArgsConstructor(staticName = "of")
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Token {
+public class Token implements Serializable {
 
     @Id
     @Column(unique = true, name = "TOKEN_VALUE")

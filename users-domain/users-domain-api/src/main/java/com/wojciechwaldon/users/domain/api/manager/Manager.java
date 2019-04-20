@@ -2,6 +2,7 @@ package com.wojciechwaldon.users.domain.api.manager;
 
 import com.wojciechwaldon.users.domain.api.Token;
 import com.wojciechwaldon.users.domain.api.User;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "MANAGER", schema = "USERS")
 @Getter
+@EqualsAndHashCode(callSuper = false)
 public class Manager extends User {
 
     @NonNull
