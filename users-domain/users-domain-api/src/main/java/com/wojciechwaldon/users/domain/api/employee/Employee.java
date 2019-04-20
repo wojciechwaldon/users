@@ -6,8 +6,10 @@ import lombok.Getter;
 import lombok.NonNull;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "EMPLOYEE", schema = "USERS")
 @Getter
 public class Employee extends User {
 
@@ -16,6 +18,10 @@ public class Employee extends User {
 
     @NonNull
     private String restaurantId;
+
+    private Employee() {
+        super();
+    }
 
     private Employee(Long id,
                      Token token,

@@ -6,8 +6,10 @@ import lombok.Getter;
 import lombok.NonNull;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "MANAGER", schema = "USERS")
 @Getter
 public class Manager extends User {
 
@@ -16,6 +18,10 @@ public class Manager extends User {
 
     @NonNull
     private String restaurantId;
+
+    private Manager() {
+        super();
+    }
 
     private Manager(Long id,
                     Token token,
