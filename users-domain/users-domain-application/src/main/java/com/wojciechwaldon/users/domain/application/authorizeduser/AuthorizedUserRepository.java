@@ -10,4 +10,6 @@ public interface AuthorizedUserRepository {
     void saveAuthorizedUser(AuthorizedUser authorizedUser);
 
     Optional<AuthorizedUser> findAuthorizedUser(Long id);
+
+    Optional<AuthorizedUser> findAuthorizedUserByEmail(String email);
 }

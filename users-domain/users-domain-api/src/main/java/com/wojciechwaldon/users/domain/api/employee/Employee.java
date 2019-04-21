@@ -1,7 +1,7 @@
 package com.wojciechwaldon.users.domain.api.employee;
 
-import com.wojciechwaldon.users.domain.api.Token;
-import com.wojciechwaldon.users.domain.api.User;
+import com.wojciechwaldon.users.domain.api.token.Token;
+import com.wojciechwaldon.users.domain.api.user.User;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;

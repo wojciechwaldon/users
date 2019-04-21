@@ -1,9 +1,7 @@
-package com.wojciechwaldon.users.domain.api;
+package com.wojciechwaldon.users.domain.api.user;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.wojciechwaldon.users.domain.api.token.Token;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -43,6 +41,15 @@ abstract public class User implements Serializable {
 
     protected User(String role, String firstName, String lastName, String email, String telephone) {
         this.role = role;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.telephone = telephone;
+    }
+
+    protected User(String role, Token token, String firstName, String lastName, String email, String telephone) {
+        this.role = role;
+        this.token = token;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

@@ -1,7 +1,7 @@
 package com.wojciechwaldon.users.domain.api.authorizeduser;
 
-import com.wojciechwaldon.users.domain.api.Token;
-import com.wojciechwaldon.users.domain.api.User;
+import com.wojciechwaldon.users.domain.api.token.Token;
+import com.wojciechwaldon.users.domain.api.user.User;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -26,11 +26,19 @@ public class AuthorizedUser extends User {
         super(id, role, token, firstName, lastName, email, telephone);
     }
 
+    private AuthorizedUser(String role, Token token, String firstName, String lastName, String email, String telephone) {
+        super(role, token, firstName, lastName, email, telephone);
+    }
+
     public static AuthorizedUser of(String role, String firstName, String lastName, String email, String telephone) {
         return new AuthorizedUser(role, firstName, lastName, email, telephone);
     }
 
     public static AuthorizedUser of(Long id, String role, Token token, String firstName, String lastName, String email, String telephone) {
         return new AuthorizedUser(id, role, token, firstName, lastName, email, telephone);
+    }
+
+    public static AuthorizedUser of(String role, Token token, String firstName, String lastName, String email, String telephone) {
+        return new AuthorizedUser(role, token, firstName, lastName, email, telephone);
     }
 }
