@@ -1,8 +1,7 @@
-package com.wojciechwaldon.users.domain.api.manager.save;
+package com.wojciechwaldon.users.domain.api.restaurant.save;
 
 import com.wojciechwaldon.cqrs.api.command.Command;
-import com.wojciechwaldon.users.domain.api.Token;
-import com.wojciechwaldon.users.domain.api.manager.Manager;
+import com.wojciechwaldon.users.domain.api.restaurant.Restaurant;
 import lombok.*;
 
 import javax.validation.Valid;
@@ -12,9 +11,9 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor(staticName = "of")
 @Getter
 @ToString
-public class SaveManagerCommand implements Command {
+public class SaveRestaurantCommand implements Command {
 
-    @Valid
     @NotNull
-    private Manager manager;
+    @Valid
+    private Restaurant restaurant;
 }

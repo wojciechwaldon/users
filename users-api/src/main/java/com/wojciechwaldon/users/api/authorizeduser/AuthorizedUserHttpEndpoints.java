@@ -2,23 +2,23 @@ package com.wojciechwaldon.users.api.authorizeduser;
 
 import com.wojciechwaldon.cqrs.api.command.CommandExecutor;
 import com.wojciechwaldon.cqrs.api.query.QueryExecutor;
+import com.wojciechwaldon.users.api.UsersModuleHttpEndpoint;
 import com.wojciechwaldon.users.domain.api.authorizeduser.AuthorizedUser;
 import com.wojciechwaldon.users.domain.api.authorizeduser.find.FindAuthorizedUserQuery;
 import com.wojciechwaldon.users.domain.api.authorizeduser.find.FindAuthorizedUserQueryView;
 import com.wojciechwaldon.users.domain.api.authorizeduser.save.SaveAuthorizedUserCommand;
-import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
 @RequestMapping(path = "/user",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE)
-@AllArgsConstructor
-public class AuthorizedUserHttpEndpoints {
+public class AuthorizedUserHttpEndpoints extends UsersModuleHttpEndpoint {
 
-    private CommandExecutor commandExecutor;
-    private QueryExecutor queryExecutor;
+    public AuthorizedUserHttpEndpoints(CommandExecutor commandExecutor,
+                                       QueryExecutor queryExecutor) {
+        super(commandExecutor, queryExecutor);
+    }
 
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,

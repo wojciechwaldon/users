@@ -18,11 +18,11 @@ public class AuthorizedUser extends User {
         super();
     }
 
-    public AuthorizedUser(String firstName, String lastName, String email, String telephone) {
+    private AuthorizedUser(String firstName, String lastName, String email, String telephone) {
         super(firstName, lastName, email, telephone);
     }
 
-    public AuthorizedUser(Long id, Token token, String firstName, String lastName, String email, String telephone) {
+    private AuthorizedUser(Long id, Token token, String firstName, String lastName, String email, String telephone) {
         super(id, token, firstName, lastName, email, telephone);
     }
 
@@ -32,9 +32,5 @@ public class AuthorizedUser extends User {
 
     public static AuthorizedUser of(Long id, Token token, String firstName, String lastName, String email, String telephone) {
         return new AuthorizedUser(id, token, firstName, lastName, email, telephone);
-    }
-
-    public void withToken(Token token) {
-        super.token = token;
     }
 }

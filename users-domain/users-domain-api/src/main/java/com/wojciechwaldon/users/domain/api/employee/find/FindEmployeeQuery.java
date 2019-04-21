@@ -10,5 +10,5 @@ import lombok.*;
 public class FindEmployeeQuery implements Query<FindEmployeeQueryView> {
 
     @NonNull
-    private FindEmployeeQueryView view;
+    private Long id;
 }

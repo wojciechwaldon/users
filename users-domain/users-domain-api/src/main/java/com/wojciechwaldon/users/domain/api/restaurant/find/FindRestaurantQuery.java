@@ -1,14 +1,16 @@
-package com.wojciechwaldon.users.domain.api.manager.find;
+package com.wojciechwaldon.users.domain.api.restaurant.find;
 
 import com.wojciechwaldon.cqrs.api.query.Query;
 import lombok.*;
+
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(staticName = "of")
 @Getter
 @ToString
-public class FindManagerQuery implements Query<FindManagerQueryView> {
+public class FindRestaurantQuery implements Query<FindRestaurantQueryView> {
 
-    @NonNull
+    @NotNull
     private Long id;
 }

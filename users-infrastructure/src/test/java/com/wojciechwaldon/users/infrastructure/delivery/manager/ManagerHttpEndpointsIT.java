@@ -1,4 +1,4 @@
-package com.wojciechwaldon.users.infrastructure.delivery.authorizeduser;
+package com.wojciechwaldon.users.infrastructure.delivery.manager;
 
 
 import com.wojciechwaldon.commons.json.JsonToObjectConverter;
@@ -6,11 +6,11 @@ import com.wojciechwaldon.commons.json.ObjectToJsonConverter;
 import com.wojciechwaldon.cqrs.api.command.CommandExecutor;
 import com.wojciechwaldon.cqrs.infrastructure.CqrsConfiguration;
 import com.wojciechwaldon.users.domain.api.Token;
-import com.wojciechwaldon.users.domain.api.authorizeduser.AuthorizedUser;
-import com.wojciechwaldon.users.domain.api.authorizeduser.save.SaveAuthorizedUserCommand;
+import com.wojciechwaldon.users.domain.api.manager.Manager;
+import com.wojciechwaldon.users.domain.api.manager.save.SaveManagerCommand;
 import com.wojciechwaldon.users.infrastructure.UsersModuleConfiguration;
 import com.wojciechwaldon.users.infrastructure.common.TestTokenGenerator;
-import com.wojciechwaldon.users.infrastructure.repository.authorizeduser.AuthorizedUserRepositoryImpl;
+import com.wojciechwaldon.users.infrastructure.repository.manager.ManagerRepositoryImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @EnableWebMvc
 @SpringBootTest(classes = {UsersModuleConfiguration.class, CqrsConfiguration.class})
-public class AuthorizedUserHttpEndpointsIT {
+public class ManagerHttpEndpointsIT {
 
     @Autowired
     private MockMvc mockMvc;
@@ -47,75 +47,75 @@ public class AuthorizedUserHttpEndpointsIT {
     private CommandExecutor commandExecutor;
 
     @Autowired
-    private AuthorizedUserRepositoryImpl authorizedUserRepository;
+    private ManagerRepositoryImpl managerRepository;
 
     @Spy
-    private JsonToObjectConverter<AuthorizedUser> authorizedUserJsonToObjectConverter;
+    private JsonToObjectConverter<Manager> managerJsonToObjectConverter;
 
     @Spy
     private ObjectToJsonConverter objectToJsonConverter;
 
     @Before
     public void cleanUp() {
-        authorizedUserRepository.deleteAll();
+        managerRepository.deleteAll();
     }
 
     @Test
-    public void shouldSaveAuthorizedUser() throws Exception {
-        AuthorizedUser authorizedUser = AuthorizedUserFactory.build();
-        this.mockMvc.perform(post("/user")
+    public void shouldSaveManager() throws Exception {
+        Manager manager = ManagerFactory.build();
+        this.mockMvc.perform(post("/manager")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-                .content(objectToJsonConverter.convert(authorizedUser)))
+                .content(objectToJsonConverter.convert(manager)))
                 .andDo(print()).andExpect(status().isOk());
     }
 
     @Test
-    public void shouldFindAuthorizedUser() throws Exception {
+    public void shouldFindManager() throws Exception {
         //given
-        AuthorizedUser authorizedUser = AuthorizedUserFactory.build();
+        Manager manager = ManagerFactory.build();
 
         //when
-        commandExecutor.execute(SaveAuthorizedUserCommand.of(authorizedUser));
+        commandExecutor.execute(SaveManagerCommand.of(manager));
 
         //then
-        ResultActions resultActions = this.mockMvc.perform(get("/user/".concat(authorizedUser.getId().toString()))
+        ResultActions resultActions = this.mockMvc.perform(get("/manager/".concat(manager.getId().toString()))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()).andExpect(status().isOk());
 
-        assertAuthorizedUserResult(authorizedUser, resultActions);
+        assertManagerResult(manager, resultActions);
     }
 
     @Test
-    public void shouldUpdateUserWithToken() throws Exception {
+    public void shouldUpdateManagerWithToken() throws Exception {
         //given
-        AuthorizedUser authorizedUser = AuthorizedUserFactory.build();
+        Manager manager = ManagerFactory.build();
 
         //when
-        commandExecutor.execute(SaveAuthorizedUserCommand.of(authorizedUser));
+        commandExecutor.execute(SaveManagerCommand.of(manager));
 
         Token token = Token.of(TestTokenGenerator.generate(),
                 LocalDateTime.now().plusMinutes(15));
 
-        authorizedUser.withToken(token);
-        commandExecutor.execute(SaveAuthorizedUserCommand.of(authorizedUser));
+        manager.withToken(token);
+        commandExecutor.execute(SaveManagerCommand.of(manager));
 
         //then
-        ResultActions resultActions = this.mockMvc.perform(get("/user/".concat(authorizedUser.getId().toString()))
+        ResultActions resultActions = this.mockMvc.perform(get("/manager/".concat(manager.getId().toString()))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
 
-        assertAuthorizedUserResult(authorizedUser, resultActions);
+        assertManagerResult(manager, resultActions);
     }
 
-    private void assertAuthorizedUserResult(AuthorizedUser authorizedUser, ResultActions resultActions) throws UnsupportedEncodingException {
+    private void assertManagerResult(Manager manager, ResultActions resultActions) throws UnsupportedEncodingException {
         MvcResult result = resultActions.andReturn();
         String contentAsString = result.getResponse().getContentAsString();
 
-        AuthorizedUser authorizedUserResult = authorizedUserJsonToObjectConverter.convert(contentAsString, AuthorizedUser.class);
+        Manager managerResult = managerJsonToObjectConverter.convert(contentAsString, Manager.class);
 
-        assertEquals(authorizedUser, authorizedUserResult);
+        assertEquals(manager, managerResult);
     }
 }

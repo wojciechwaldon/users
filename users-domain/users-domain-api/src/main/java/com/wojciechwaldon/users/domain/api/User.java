@@ -44,4 +44,8 @@ abstract public class User implements Serializable {
         this.email = email;
         this.telephone = telephone;
     }
+
+    public void withToken(Token token) {
+        this.token = token;
+    }
 }
