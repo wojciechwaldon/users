@@ -5,9 +5,9 @@ import com.wojciechwaldon.commons.json.JsonToObjectConverter;
 import com.wojciechwaldon.commons.json.ObjectToJsonConverter;
 import com.wojciechwaldon.cqrs.api.command.CommandExecutor;
 import com.wojciechwaldon.cqrs.infrastructure.CqrsConfiguration;
-import com.wojciechwaldon.users.domain.api.Token;
 import com.wojciechwaldon.users.domain.api.authorizeduser.AuthorizedUser;
 import com.wojciechwaldon.users.domain.api.authorizeduser.save.SaveAuthorizedUserCommand;
+import com.wojciechwaldon.users.domain.api.token.Token;
 import com.wojciechwaldon.users.infrastructure.UsersModuleConfiguration;
 import com.wojciechwaldon.users.infrastructure.common.TestTokenGenerator;
 import com.wojciechwaldon.users.infrastructure.repository.authorizeduser.AuthorizedUserRepositoryImpl;
@@ -62,8 +62,31 @@ public class AuthorizedUserHttpEndpointsIT {
 
     @Test
     public void shouldSaveAuthorizedUser() throws Exception {
+        //given
         AuthorizedUser authorizedUser = AuthorizedUserFactory.build();
+
+        //then
         this.mockMvc.perform(post("/user")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                .content(objectToJsonConverter.convert(authorizedUser)))
+                .andDo(print()).andExpect(status().isOk());
+    }
+
+    @Test
+    public void shouldUpdateAuthorizedUser() throws Exception {
+        //given
+        AuthorizedUser authorizedUser = AuthorizedUserFactory.buildWithToken();
+
+        //when
+        commandExecutor.execute(SaveAuthorizedUserCommand.of(authorizedUser));
+
+        authorizedUser.withToken(Token.of(TestTokenGenerator.generate(),
+                LocalDateTime.now().plusMinutes(15)));
+
+        //then
+        this.mockMvc.perform(post("/user/update")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)

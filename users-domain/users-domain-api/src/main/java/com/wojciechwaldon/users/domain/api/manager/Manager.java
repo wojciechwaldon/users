@@ -1,6 +1,6 @@
 package com.wojciechwaldon.users.domain.api.manager;
 
-import com.wojciechwaldon.users.domain.api.Token;
+import com.wojciechwaldon.users.domain.api.token.Token;
 import com.wojciechwaldon.users.domain.api.employee.Employee;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,6 +19,7 @@ public class Manager extends Employee {
     }
 
     private Manager(Long id,
+                    String role,
                     Token token,
                     String firstName,
                     String lastName,
@@ -26,19 +27,21 @@ public class Manager extends Employee {
                     String telephone,
                     String password,
                     Long restaurantId) {
-        super(id, token, firstName, lastName, email, telephone, password, restaurantId);
+        super(id, role, token, firstName, lastName, email, telephone, password, restaurantId);
     }
 
-    private Manager(String firstName,
+    private Manager(String role,
+                    String firstName,
                     String lastName,
                     String email,
                     String telephone,
                     String password,
                     Long restaurantId) {
-        super(firstName, lastName, email, telephone, password, restaurantId);
+        super(role, firstName, lastName, email, telephone, password, restaurantId);
     }
 
     public static Manager of(Long id,
+                             String role,
                              Token token,
                              String firstName,
                              String lastName,
@@ -46,15 +49,16 @@ public class Manager extends Employee {
                              String telephone,
                              String password,
                              Long restaurantId) {
-        return new Manager(id, token, firstName, lastName, email, telephone, password, restaurantId);
+        return new Manager(id, role, token, firstName, lastName, email, telephone, password, restaurantId);
     }
 
-    public static Manager of(String firstName,
+    public static Manager of(String role,
+                             String firstName,
                              String lastName,
                              String email,
                              String telephone,
                              String password,
                              Long restaurantId) {
-        return new Manager(firstName, lastName, email, telephone, password, restaurantId);
+        return new Manager(role, firstName, lastName, email, telephone, password, restaurantId);
     }
 }

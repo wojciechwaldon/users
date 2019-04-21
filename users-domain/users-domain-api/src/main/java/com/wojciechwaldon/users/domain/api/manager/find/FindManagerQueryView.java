@@ -1,7 +1,7 @@
 package com.wojciechwaldon.users.domain.api.manager.find;
 
 import com.wojciechwaldon.cqrs.api.query.QueryView;
-import com.wojciechwaldon.users.domain.api.Token;
+import com.wojciechwaldon.users.domain.api.token.Token;
 import lombok.*;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "RESTAURANT", schema = "USERS")
 @AllArgsConstructor(staticName = "of")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @EqualsAndHashCode
 public class Restaurant implements Serializable {

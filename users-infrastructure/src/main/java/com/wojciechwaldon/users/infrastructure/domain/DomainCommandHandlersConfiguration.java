@@ -3,6 +3,7 @@ package com.wojciechwaldon.users.infrastructure.domain;
 import com.wojciechwaldon.users.domain.application.authorizeduser.AuthorizedUserRepository;
 import com.wojciechwaldon.users.domain.application.authorizeduser.find.FindAuthorizedUserQueryHandler;
 import com.wojciechwaldon.users.domain.application.authorizeduser.save.SaveAuthorizedUserCommandHandler;
+import com.wojciechwaldon.users.domain.application.authorizeduser.save.SaveOrUpdateAuthorizedUserCommandHandler;
 import com.wojciechwaldon.users.domain.application.employee.EmployeeRepository;
 import com.wojciechwaldon.users.domain.application.employee.find.FindEmployeeQueryHandler;
 import com.wojciechwaldon.users.domain.application.employee.save.SaveEmployeeCommandHandler;
@@ -21,6 +22,11 @@ class DomainCommandHandlersConfiguration {
     @Bean
     public SaveAuthorizedUserCommandHandler saveAuthorizedUserCommandHandler(AuthorizedUserRepository repository) {
         return new SaveAuthorizedUserCommandHandler(repository);
+    }
+
+    @Bean
+    public SaveOrUpdateAuthorizedUserCommandHandler saveOrUpdateAuthorizedUserCommandHandler(AuthorizedUserRepository repository) {
+        return new SaveOrUpdateAuthorizedUserCommandHandler(repository);
     }
 
     @Bean

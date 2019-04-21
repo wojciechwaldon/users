@@ -1,9 +1,7 @@
-package com.wojciechwaldon.users.domain.api;
+package com.wojciechwaldon.users.domain.api.user;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.wojciechwaldon.users.domain.api.token.Token;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,6 +17,9 @@ abstract public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS.USERS_SEQUENCE")
     private Long id;
+
+    @NotNull
+    private String role;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "TOKEN_ID")
@@ -38,7 +39,17 @@ abstract public class User implements Serializable {
     @NotNull
     protected String telephone;
 
-    protected User(String firstName, String lastName, String email, String telephone) {
+    protected User(String role, String firstName, String lastName, String email, String telephone) {
+        this.role = role;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.telephone = telephone;
+    }
+
+    protected User(String role, Token token, String firstName, String lastName, String email, String telephone) {
+        this.role = role;
+        this.token = token;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

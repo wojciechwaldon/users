@@ -6,6 +6,7 @@ class EmployeeFactory {
 
     static Employee build() {
         return Employee.of(
+                "Role",
                 "First name",
                 "Last name",
                 "email",

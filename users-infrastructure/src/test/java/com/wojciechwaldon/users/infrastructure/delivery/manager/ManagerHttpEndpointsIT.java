@@ -5,7 +5,7 @@ import com.wojciechwaldon.commons.json.JsonToObjectConverter;
 import com.wojciechwaldon.commons.json.ObjectToJsonConverter;
 import com.wojciechwaldon.cqrs.api.command.CommandExecutor;
 import com.wojciechwaldon.cqrs.infrastructure.CqrsConfiguration;
-import com.wojciechwaldon.users.domain.api.Token;
+import com.wojciechwaldon.users.domain.api.token.Token;
 import com.wojciechwaldon.users.domain.api.manager.Manager;
 import com.wojciechwaldon.users.domain.api.manager.save.SaveManagerCommand;
 import com.wojciechwaldon.users.infrastructure.UsersModuleConfiguration;
