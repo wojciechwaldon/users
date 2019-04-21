@@ -6,12 +6,12 @@ class ManagerFactory {
 
     static Manager build() {
         return Manager.of(
+                "Role",
                 "First name",
                 "Last name",
                 "email",
                 "telephone",
                 "password",
                 1L);
-
     }
 }

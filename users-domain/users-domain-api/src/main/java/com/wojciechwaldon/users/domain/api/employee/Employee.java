@@ -6,7 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -26,40 +28,44 @@ public class Employee extends User {
         super();
     }
 
-    protected Employee(String firstName,
-                     String lastName,
-                     String email,
-                     String telephone,
-                     String password,
+    protected Employee(String role,
+                       String firstName,
+                       String lastName,
+                       String email,
+                       String telephone,
+                       String password,
                        Long restaurantId) {
-        super(firstName, lastName, email, telephone);
+        super(role, firstName, lastName, email, telephone);
         this.password = password;
         this.restaurantId = restaurantId;
     }
 
     protected Employee(Long id,
-                     Token token,
-                     String firstName,
-                     String lastName,
-                     String email,
-                     String telephone,
-                     String password,
+                       String role,
+                       Token token,
+                       String firstName,
+                       String lastName,
+                       String email,
+                       String telephone,
+                       String password,
                        Long restaurantId) {
-        super(id, token, firstName, lastName, email, telephone);
+        super(id, role, token, firstName, lastName, email, telephone);
         this.password = password;
         this.restaurantId = restaurantId;
     }
 
-    public static Employee of(String firstName,
+    public static Employee of(String role,
+                              String firstName,
                               String lastName,
                               String email,
                               String telephone,
                               String password,
                               Long restaurantId) {
-        return new Employee(firstName, lastName, email, telephone, password, restaurantId);
+        return new Employee(role, firstName, lastName, email, telephone, password, restaurantId);
     }
 
     public static Employee of(Long id,
+                              String role,
                               Token token,
                               String firstName,
                               String lastName,
@@ -67,6 +73,6 @@ public class Employee extends User {
                               String telephone,
                               String password,
                               Long restaurantId) {
-        return new Employee(id, token, firstName, lastName, email, telephone, password, restaurantId);
+        return new Employee(id, role, token, firstName, lastName, email, telephone, password, restaurantId);
     }
 }

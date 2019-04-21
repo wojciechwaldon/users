@@ -20,6 +20,9 @@ abstract public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS.USERS_SEQUENCE")
     private Long id;
 
+    @NotNull
+    private String role;
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "TOKEN_ID")
     protected Token token;
@@ -38,7 +41,8 @@ abstract public class User implements Serializable {
     @NotNull
     protected String telephone;
 
-    protected User(String firstName, String lastName, String email, String telephone) {
+    protected User(String role, String firstName, String lastName, String email, String telephone) {
+        this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

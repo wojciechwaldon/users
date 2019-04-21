@@ -6,10 +6,10 @@ class AuthorizedUserFactory {
 
     static AuthorizedUser build() {
         return AuthorizedUser.of(
+                "Role",
                 "First name",
                 "Last name",
                 "email",
                 "telephone");
-
     }
 }
