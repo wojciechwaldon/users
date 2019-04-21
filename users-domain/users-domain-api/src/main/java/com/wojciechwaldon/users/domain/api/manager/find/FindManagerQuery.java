@@ -10,5 +10,5 @@ import lombok.*;
 public class FindManagerQuery implements Query<FindManagerQueryView> {
 
     @NonNull
-    private FindManagerQueryView view;
+    private Long id;
 }
