@@ -1,4 +1,4 @@
-package com.wojciechwaldon.users.infrastructure.delivery.commmon;
+package com.wojciechwaldon.users.infrastructure.common;
 
 import java.util.UUID;
 

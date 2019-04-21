@@ -31,5 +31,5 @@ public class FindEmployeeQueryView implements QueryView {
     private String password;
 
     @NonNull
-    private String restaurantId;
+    private Long restaurantId;
 }
